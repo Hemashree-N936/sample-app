@@ -3,6 +3,24 @@ kind: Deployment
 metadata:
   name: production-deployment
 spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: production
+  template:
+    metadata:
+      labels:
+        app: production
+    spec:
+      containers:
+      - name: hello-cloudbuild
+        image: us-east4-docker.pkg.dev/qwiklabs-gcp-01-4ef46d7e93d3/my-repository/hello-cloudbuild:v1.0
+        ports:
+        - containerPort: 8080apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: production-deployment
+spec:
   replicas: 3
   selector:
     matchLabels:
@@ -10,10 +28,22 @@ spec:
   template:
     metadata:
       labels:
-        app: production-app
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: production-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: production
+  template:
+    metadata:
+      labels:
+        app: production
     spec:
       containers:
-      - name: production-container
-        image: us-east4-docker.pkg.dev/qwiklabs-gcp-01-4ef46d7e93d3/my-repository/prod-image:v1.0
+      - name: hello-cloudbuild
+        image: us-east4-docker.pkg.dev/qwiklabs-gcp-01-4ef46d7e93d3/my-repository/hello-cloudbuild:v1.0
         ports:
         - containerPort: 8080
